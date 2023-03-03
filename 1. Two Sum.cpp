@@ -1,12 +1,14 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        map<int,int> m;
-        for (int i=0; i<nums.size(); i++) {
-            if (m[target-nums[i]]!=0) {
-                return{m[target-nums[i]]-1,i};
-            }
-            m[nums[i]]=i+1;
-        }
+std::map<int,int> bucket;
+int n=nums.size();
+for(int i=0;i<n;i++){
+    if(bucket[target-nums[i]]){
+        return {bucket[target-nums[i]]-1, i};
+    }
+        bucket[nums[i]]=i+1;
+}
+        return {0,0}; 
     }
 };

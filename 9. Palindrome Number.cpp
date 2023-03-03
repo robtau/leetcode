@@ -1,3 +1,5 @@
+//Runtime 4 ms Beats 97.94%
+//Memory 5.9 MB Beats 62.75%
 static const auto _ = []() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -6,13 +8,21 @@ static const auto _ = []() {
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if(x>=0){
-            string s=to_string(x);
-            int n=s.length();
-            for(int i=0;i<n/2;i++) if(s[i]!=s[n-i-1]) return 0;
-        }else{
-            return 0;
-        }
-        return 1;
+       if(x<0) return false;
+       if(x<9) return true;
+       auto liczba = x;
+       int n {0};
+       while (liczba>0){
+        liczba/=10;
+        n++;
+       }
+       int tab[n];
+       for (int i=0; x>0; i++){
+        tab[i]=x%10;
+        x/=10;
+       }
+       for(int i=0; i<n; i++)
+       if(tab[i]!=tab[n-i-1]) return (i>=n-i-1)?true:false; 
+       return true;      
     }
 };
